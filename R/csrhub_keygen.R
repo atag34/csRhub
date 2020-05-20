@@ -8,10 +8,6 @@
 #' @examples
 #' @name csrhub_keygen
 
-library(curl)
-library(jsonlite)
-library(magrittr)
-
 csrhub_keygen <- function(email,password) {
   if(is.null(email)){
     message("Missing Login Email")
@@ -20,13 +16,13 @@ csrhub_keygen <- function(email,password) {
     message("Missing Password")
   }
       else{
-        key <- POST("http://www.csrhub.com/api/v2/session/",
+        key <- httr::POST("http://www.csrhub.com/api/v2/session/",
                     body=paste0("name=",email,"&password=",password))
 
-            if (is.null(content(key, 'parsed')$session_id)){
-                message(content(key, 'parsed')$error)
+            if (is.null(httr::content(key, 'parsed')$session_id)){
+                message(httr::content(key, 'parsed')$error)
               } else{
-                key <- content(key, 'parsed')$session_id
+                key <- httr::content(key, 'parsed')$session_id
                 return(key)
                 }
       }

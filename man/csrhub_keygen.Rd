@@ -3,6 +3,9 @@
 \name{csrhub_keygen}
 \alias{csrhub_keygen}
 \title{CSRHub Generate Session ID}
+\usage{
+csrhub_keygen(email, password)
+}
 \arguments{
 \item{email}{csrhub email associated with your account}
 
