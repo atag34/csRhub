@@ -1,8 +1,9 @@
-#' CARHUB Search for Company API Alias
+#' CSRHUB Search for Company API Alias
 #'
 #' The function will recieve the csrhub api alias and return a data frame with searched term
-#' for the company you search for. Currently only written to work with names but other
-#' searches are possible by ISIN or Ticker.
+#' and the alias response. This is used to run company specific queries. You can also use an
+#' array or list of names.
+#'
 #' @param company pass a company name or multiple company names for alias match
 #' @param key use the key generated with the csrhub_keygen() function
 #' @keywords alias, search
@@ -10,11 +11,19 @@
 #' @import dplyr
 #' @examples company_names <- c("apple","alphabet")
 #' results <- GetAlias(company=company_names,key=key)
-#'print(results)
-#'search_term    CSRNAME
-#'1       apple  Apple-Inc
-#'2    alphabet Google-Inc
+#' print(results)
+#' search_term    CSRNAME
+#' 1       apple  Apple-Inc
+#' 2    alphabet Google-Inc
 #'
+#' results <- csRhub::GetAlias('US0378331005',key = key)
+#' search_term   CSRNAME
+#' US0378331005 Apple-Inc
+#'
+#' results <- csRhub::GetAlias('AAPL',key = key)
+#' search_term   CSRNAME
+#' AAPL Apple-Inc
+
 #' @name GetAlias
 
 GetAlias <- function(company,key){
